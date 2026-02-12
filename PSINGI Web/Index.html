@@ -1,0 +1,912 @@
+Import React, { useState, useEffect } from ‘react’; 
+Import {  
+ShieldCheck, Droplets, Cuboid, ChevronRight,  
+MapPin, Phone, Mail, ArrowLeft, Wrench, CheckCircle2, 
+ExternalLink, Download, MessageSquare 
+} from ‘lucide-react’; 
+// --- PALETA DE COLORES OFICIAL --- 
+Const COLORS = { 
+Navy: ‘#1B2A41’, 
+Cyan: ‘#00AEEF’, 
+Orange: ‘#EF7622’, 
+Teal: ‘#18989E’, 
+Gray: ‘#5ª6978’, 
+nexvelGold: ‘#8b5a2b’ 
+}; 
+// --- COMPONENTE: LOGO PSINGI VECTORIAL --- 
+Const PsingiLogo = ({ className = “w-24 h-24” }) => ( 
+<svg viewBox=”0 0 120 120” className={className}> 
+<path d=”M20 60 L60 85 L100 60 L100 80 L60 105 L20 80 Z” fill={COLORS.gray}/> 
+<path d=”M45 75 L60 100 L75 75 Z” fill=”#4ª5763”/> 
+<path d=”M20 40 L60 15 L100 40 L100 60 L85 60 L85 45 L60 30 L35 45 L35 60 L20 60 
+Z” fill={COLORS.navy}/> 
+<circle cx=”60” cy=”40” r=”6” fill={COLORS.orange}/> 
+<path d=”M60 40 L60 80” stroke={COLORS.orange} strokeWidth=”6” 
+strokeLinecap=”round”/> 
+    <path d=”M57 80 L63 80 L60 85 Z” fill={COLORS.orange}/> 
+    <circle cx=”30” cy=”45” r=”5” fill={COLORS.teal} stroke=”white” strokeWidth=”2”/> 
+    <path d=”M30 45 L50 60 L50 70” fill=”none” stroke={COLORS.teal} strokeWidth=”4” 
+strokeLinejoin=”round”/> 
+    <circle cx=”90” cy=”45” r=”5” fill={COLORS.cyan} stroke=”white” strokeWidth=”2”/> 
+    <path d=”M90 45 L70 60 L70 70” fill=”none” stroke={COLORS.cyan} 
+strokeWidth=”4” strokeLinejoin=”round”/> 
+  </svg> 
+); 
+ 
+// --- COMPONENTE: LOGO NEXVEL --- 
+Const NexvelLogo = () => ( 
+    <div className=”flex flex-col items-start”> 
+        <div className=”flex items-baseline leading-none”> 
+            <span className=”text-3xl font-black tracking-tighter text-slate-900 font
+sans”>NEX</span> 
+            <span className=”text-3xl font-black tracking-tighter text-[#8b5a2b] font
+sans”>X</span> 
+            <span className=”text-3xl font-black tracking-tighter text-slate-900 font
+sans”>VEL</span> 
+        </div> 
+        <span className=”text-xl italic text-slate-800 -mt-1 ml-12” style={{ fontFamily: 
+‘serif’ }}>Studio</span> 
+    </div> 
+); 
+ 
+// --- APP PRINCIPAL (ENRUTADOR VIRTUAL) --- 
+Export default function MultiPageApp() { 
+  Const [currentPage, setCurrentPage] = useState(‘home’); // ‘home’, ‘dryhouse’, 
+‘nexvel’ 
+ 
+  // Función para simular cambio de página con scroll hacia arriba 
+  Const navigateTo = (page) => { 
+    setCurrentPage(page); 
+    window.scrollTo({ top: 0, behavior: ‘smooth’ }); 
+  }; 
+ 
+  // 1. PÁGINA: INDEX CORPORATIVO (PSINGI) 
+  If (currentPage === ‘home’) { 
+    Return ( 
+      <div className=”min-h-screen bg-slate-50 font-sans selection:bg-[#EF7622] 
+selection:text-white”> 
+         
+        {/* Navbar Matriz */} 
+        <nav className=”bg-white border-b border-slate-200 sticky top-0 z-50 shadow
+sm”> 
+          <div className=”max-w-7xl mx-auto px-4 sm:px-6 lg:px-8”> 
+            <div className=”flex justify-between h-20 items-center”> 
+              <div className=”flex items-center gap-3 cursor-pointer” onClick={() => 
+navigateTo(‘home’)}> 
+                <PsingiLogo className=”w-12 h-12” /> 
+                <div> 
+                  <h1 className=”font-black text-xl tracking-tight text-[#1B2A41] leading
+none uppercase”>PSINGI</h1> 
+                  <span className=”text-[9px] font-bold text-slate-400 tracking-[0.2em] 
+uppercase”>Grupo Empresarial</span> 
+                </div> 
+              </div> 
+              <div className=”hidden md:flex items-center gap-6”> 
+                <a href=”#filiales” className=”text-sm font-bold text-slate-600 hover:text
+[#EF7622] transition”>Filiales Operativas</a> 
+                <a href=”#contacto” className=”text-sm font-bold text-slate-600 hover:text
+[#EF7622] transition”>Contacto</a> 
+                <button className=”flex items-center gap-2 bg-[#1B2A41] text-white px-5 py
+2.5 rounded-full text-sm font-bold hover:bg-opacity-90 transition”> 
+                  <ShieldCheck size={16} /> Portal Técnico 
+                </button> 
+              </div> 
+            </div> 
+          </div> 
+        </nav> 
+ 
+        {/* Hero Section */} 
+        <div className=”relative bg-[#1B2A41] text-white overflow-hidden py-24 lg:py
+32”> 
+          <div className=”absolute inset-0 opacity-10” style={{ backgroundImage: ‘radial
+gradient(#ffffff 1px, transparent 1px)’, backgroundSize: ‘30px 30px’ }}></div> 
+          <div className=”max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid 
+md:grid-cols-2 gap-12 items-center”> 
+            <div className=”space-y-6”> 
+              <div className=”inline-block px-4 py-1.5 rounded-full bg-white/10 border 
+border-white/20 text-xs font-bold text-[#EF7622] tracking-widest uppercase”> 
+                Productos y Servicios Integrales de Nueva Generación 
+              </div> 
+              <h2 className=”text-4xl md:text-5xl lg:text-6xl font-black leading-tight”> 
+                Ingeniería que <br/>Construye el Futuro. 
+              </h2> 
+              <p className=”text-slate-400 text-lg max-w-lg leading-relaxed”> 
+                Centralizamos la calidad. Somos un conglomerado yucateco especializado 
+en manufactura química, mobiliario inteligente y ejecución técnica certificada. 
+              </p> 
+              <div className=”pt-4”> 
+                <a href=”#filiales” className=”bg-[#EF7622] text-white px-8 py-4 rounded-xl 
+font-bold hover:bg-opacity-90 transition inline-flex items-center gap-2 shadow-lg 
+shadow-orange-900/50”> 
+                  Conocer Nuestras Marcas <ChevronRight size={18} /> 
+                </a> 
+              </div> 
+            </div> 
+            <div className=”hidden md:flex justify-center”> 
+              <PsingiLogo className=”w-96 h-96 drop-shadow-2xl opacity-90” /> 
+            </div> 
+          </div> 
+        </div> 
+ 
+        {/* Sección de Filiales (Los Portales) */} 
+        <div id=”filiales” className=”py-24 bg-white”> 
+          <div className=”max-w-7xl mx-auto px-4 sm:px-6 lg:px-8”> 
+            <div className=”text-center max-w-2xl mx-auto mb-16 space-y-4”> 
+              <h3 className=”text-[#EF7622] font-bold tracking-widest uppercase text
+sm”>El Ecosistema Corporativo</h3> 
+              <h2 className=”text-3xl md:text-4xl font-black text-slate-900”>Nuestras 
+Divisiones Especializadas</h2> 
+              <p className=”text-slate-500”>Seleccione una filial para acceder a su 
+catálogo y servicios exclusivos.</p> 
+            </div> 
+ 
+            <div className=”grid md:grid-cols-2 gap-8 max-w-5xl mx-auto”> 
+               
+              {/* Tarjeta Dry House */} 
+              <div  
+                onClick={() => navigateTo(‘dryhouse’)} 
+                className=”bg-slate-50 rounded-3xl p-8 border-2 border-slate-100 
+hover:border-[#00AEEF] cursor-pointer transition-all duration-300 group 
+hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden” 
+              > 
+                <div className=”absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 
+transition duration-500”> 
+                    <Droplets size={200} className=”text-[#00AEEF]” /> 
+                </div> 
+                <div className=”w-16 h-16 bg-[#00AEEF] text-white rounded-2xl flex items
+center justify-center text-3xl mb-6 shadow-lg shadow-cyan-200”> 
+                  <Droplets /> 
+                </div> 
+                <h4 className=”text-2xl font-black text-slate-900 mb-2”>Dry House 
+México®</h4> 
+                <p className=”text-slate-600 text-sm leading-relaxed mb-8”>Especialidades 
+químicas, selladores hidrófugos y sistemas de impermeabilización diseñados para el 
+clima extremo del sureste.</p> 
+                <div className=”flex items-center justify-between mt-auto”> 
+                    <span className=”bg-cyan-100 text-[#00AEEF] text-xs font-bold px-3 py-1 
+rounded-full uppercase tracking-wider”>+8,000 Ventas Nacionales</span> 
+                    <span className=”text-[#00AEEF] font-bold text-sm flex items-center gap
+1 group-hover:gap-2 transition-all”>Entrar a la marca <ChevronRight 
+size={16}/></span> 
+                </div> 
+              </div> 
+ 
+              {/* Tarjeta Nexvel */} 
+              <div  
+                onClick={() => navigateTo(‘nexvel’)} 
+                className=”bg-slate-50 rounded-3xl p-8 border-2 border-slate-100 
+hover:border-[#1B2A41] cursor-pointer transition-all duration-300 group 
+hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden” 
+              > 
+                 <div className=”absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 
+transition duration-500”> 
+                    <Cuboid size={200} className=”text-[#1B2A41]” /> 
+                </div> 
+                <div className=”w-16 h-16 bg-[#1B2A41] text-white rounded-2xl flex items
+center justify-center text-3xl mb-6 shadow-lg shadow-slate-300”> 
+                  <Cuboid /> 
+                </div> 
+                <h4 className=”text-2xl font-black text-slate-900 mb-2”>Nexvel Studio</h4> 
+                <p className=”text-slate-600 text-sm leading-relaxed mb-8”>Mobiliario 
+modular de alta ingeniería. Cocinas y clósets que crecen a tu ritmo con herrajes 
+premium y diseños estandarizados.</p> 
+                <div className=”flex items-center justify-between mt-auto”> 
+                    <span className=”bg-slate-200 text-[#1B2A41] text-xs font-bold px-3 py-1 
+rounded-full uppercase tracking-wider”>Nueva División</span> 
+                    <span className=”text-[#1B2A41] font-bold text-sm flex items-center gap
+1 group-hover:gap-2 transition-all”>Explorar módulos <ChevronRight 
+size={16}/></span> 
+                </div> 
+              </div> 
+ 
+            </div> 
+          </div> 
+        </div> 
+ 
+        {/* Sección de Contacto Corporativo */} 
+        <div id=”contacto” className=”bg-slate-900 text-white py-20 border-t border
+slate-800”> 
+            <div className=”max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 
+gap-12 items-center”> 
+                <div> 
+                    <h3 className=”text-3xl font-black mb-4”>Contacto Corporativo</h3> 
+                    <p className=”text-slate-400 mb-8”>Para asuntos administrativos, 
+relaciones comerciales, licitaciones o contacto general con Grupo PSINGI.</p> 
+                    <div className=”space-y-4”> 
+                        <div className=”flex items-center gap-4 text-slate-300”> 
+                            <div className=”w-12 h-12 bg-white/10 rounded-full flex items-center 
+justify-center text-[#EF7622]”><Mail size={20}/></div> 
+                            <div><p className=”text-xs font-bold text-slate-500 
+uppercase”>Correo Electrónico</p><p className=”font
+mono”>contacto@psingi.com</p></div> 
+                        </div> 
+                        <div className=”flex items-center gap-4 text-slate-300”> 
+                            <div className=”w-12 h-12 bg-white/10 rounded-full flex items-center 
+justify-center text-[#EF7622]”><Phone size={20}/></div> 
+                            <div><p className=”text-xs font-bold text-slate-500 uppercase”>Línea 
+Directa / WhatsApp</p><p className=”font-mono”>999 456 8083</p></div> 
+                        </div> 
+                        <div className=”flex items-center gap-4 text-slate-300”> 
+                            <div className=”w-12 h-12 bg-white/10 rounded-full flex items-center 
+justify-center text-[#EF7622]”><MapPin size={20}/></div> 
+                            <div><p className=”text-xs font-bold text-slate-500 uppercase”>Sede 
+de Operaciones</p><p>Mérida, Yucatán, México.</p></div> 
+                        </div> 
+                    </div> 
+                </div> 
+                <div className=”bg-white/5 p-8 rounded-3xl border border-white/10”> 
+                    <h4 className=”text-xl font-bold mb-4”>La División de Ingeniería</h4> 
+                    <p className=”text-sm text-slate-400 mb-6”>Todos los productos 
+fabricados por nuestras filiales son instalados exclusivamente por la División Técnica 
+Especializada de Grupo PSINGI, garantizando la máxima calidad sin depender de 
+terceros.</p> 
+                    <div className=”flex items-center gap-2 text-green-400 text-sm font
+bold”> 
+                        <CheckCircle2 size={18}/> Instalación Garantizada 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+      </div> 
+    ); 
+  } 
+ 
+  // 2. SUB-PÁGINA: DRY HOUSE MÉXICO 
+  If (currentPage === ‘dryhouse’) { 
+    Return ( 
+      <div className=”min-h-screen bg-slate-50”> 
+        {/* Navbar Submarca */} 
+        <nav className=”bg-[#00AEEF] text-white sticky top-0 z-50 shadow-md”> 
+            <div className=”max-w-7xl mx-auto px-4 h-16 flex justify-between items
+center”> 
+                <button onClick={() => navigateTo(‘home’)} className=”flex items-center 
+gap-2 text-white/80 hover:text-white font-bold text-sm transition”> 
+                    <ArrowLeft size={16}/> Volver al Grupo 
+                </button> 
+                <div className=”flex items-center gap-2”> 
+                    <Droplets size={24}/> 
+                    <h1 className=”font-black text-xl tracking-tighter”>DRY HOUSE</h1> 
+                </div> 
+            </div> 
+        </nav> 
+ 
+        {/* Cabecera Dry House */} 
+        <div className=”bg-white py-16 border-b border-slate-200”> 
+            <div className=”max-w-4xl mx-auto px-4 text-center”> 
+                <h2 className=”text-4xl font-black text-slate-900 mb-4”>Protección 
+Estructural Avanzada</h2> 
+                <p className=”text-lg text-slate-600 mb-8”>Soluciones químicas hidrófugas 
+para el clima extremo. Más de 8,000 unidades vendidas respaldan nuestra calidad en 
+México.</p> 
+                 
+                {/* Producto Estrella */} 
+                <div className=”bg-slate-50 rounded-3xl p-8 border border-slate-200 flex 
+flex-col md:flex-row items-center gap-8 text-left shadow-sm”> 
+                    <div className=”w-32 h-32 bg-[#00AEEF]/10 rounded-2xl flex items-center 
+justify-center text-[#00AEEF] flex-shrink-0”> 
+                        <Droplets size={64}/> 
+                    </div> 
+                    <div> 
+                        <div className=”inline-block bg-yellow-100 text-yellow-800 text-[10px] 
+font-black px-2 py-1 rounded uppercase tracking-widest mb-2 border border-yellow
+200”>Producto Más Vendido</div> 
+                        <h3 className=”text-2xl font-black text-slate-800 mb-2”>Sellador / 
+Resanador Acrílico Transparente</h3> 
+                        <p className=”text-sm text-slate-600 mb-4”>Fórmula hidrófuga de alta 
+penetración. Sella poros en techos, madera y concreto haciéndolos repelentes al 
+agua sin cambiar su apariencia.</p> 
+                        <div className=”flex gap-4”> 
+                            <button className=”bg-[#00AEEF] text-white px-5 py-2.5 rounded-lg 
+font-bold text-sm hover:bg-cyan-600 transition shadow-lg shadow-cyan-200 flex 
+items-center gap-2”> 
+                                <MessageSquare size={16}/> Cotizar por WhatsApp 
+                            </button> 
+                            <button className=”border-2 border-slate-200 text-slate-600 px-5 py
+2.5 rounded-lg font-bold text-sm hover:border-[#00AEEF] hover:text-[#00AEEF] 
+transition flex items-center gap-2”> 
+                                <Download size={16}/> Manual de Uso (PDF) 
+                            </button> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+ 
+        {/* Tienda Oficial */} 
+        <div className=”max-w-4xl mx-auto px-4 py-16 text-center”> 
+            <h3 className=”text-xl font-bold text-slate-800 mb-6”>Envíos a todo el país a 
+través de Mercado Libre</h3> 
+            <a href=”#” className=”inline-flex items-center gap-3 bg-[#FFE600] text
+[#2D3277] px-8 py-4 rounded-xl font-black hover:scale-105 transition shadow-lg”> 
+                <ExternalLink size={20}/> Visitar Tienda Oficial en Mercado Libre 
+            </a> 
+            <p className=”text-xs text-slate-400 mt-4 uppercase tracking-widest font
+bold”>Distribuidora Peninsula – MercadoLíder</p> 
+        </div> 
+      </div> 
+    ); 
+  } 
+ 
+  // 3. SUB-PÁGINA: NEXVEL STUDIO 
+  If (currentPage === ‘nexvel’) { 
+    Return ( 
+      <div className=”min-h-screen bg-slate-50”> 
+        {/* Navbar Submarca */} 
+        <nav className=”bg-white text-slate-900 sticky top-0 z-50 shadow-sm border-b
+2 border-slate-900”> 
+            <div className=”max-w-7xl mx-auto px-4 h-20 flex justify-between items
+center”> 
+                <button onClick={() => navigateTo(‘home’)} className=”flex items-center 
+gap-2 text-slate-500 hover:text-slate-900 font-bold text-sm transition”> 
+                    <ArrowLeft size={16}/> Grupo PSINGI 
+                </button> 
+                <NexvelLogo /> 
+            </div> 
+        </nav> 
+ 
+        {/* Cabecera Nexvel */} 
+        <div className=”bg-slate-900 text-white py-20 relative overflow-hidden”> 
+            <div className=”absolute -right-20 top-0 opacity-10”><Cuboid 
+size={400}/></div> 
+            <div className=”max-w-5xl mx-auto px-4 relative z-10 text-center”> 
+                <h2 className=”text-4xl md:text-5xl font-black mb-6”>Mobiliario Modular de 
+Alta Ingeniería</h2> 
+                <p className=”text-lg text-slate-400 max-w-2xl mx-auto mb-10”>No 
+cambies de casa, cambia cómo la equipas. Empieza con un buró, termina con la 
+cocina de tus sueños gracias a nuestro sistema de módulos estandarizados.</p> 
+                 
+                <div className=”grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto”> 
+                    <div className=”bg-white/10 p-6 rounded-2xl border border-white/20 
+backdrop-blur-sm text-left”> 
+                        <CheckCircle2 className=”text-[#EF7622] mb-3”/> 
+                        <h4 className=”font-bold mb-1”>Cero Triplay Delgado</h4> 
+                        <p className=”text-xs text-slate-300”>Fondos completos del mismo 
+grosor para máxima rigidez estructural.</p> 
+                    </div> 
+                    <div className=”bg-white/10 p-6 rounded-2xl border border-white/20 
+backdrop-blur-sm text-left”> 
+                        <CheckCircle2 className=”text-[#EF7622] mb-3”/> 
+                        <h4 className=”font-bold mb-1”>Herrajes Premium</h4> 
+                        <p className=”text-xs text-slate-300”>Sistema “Push to Open” o cierre 
+suave en nuestras gamas superiores.</p> 
+                    </div> 
+                    <div className=”bg-white/10 p-6 rounded-2xl border border-white/20 
+backdrop-blur-sm text-left”> 
+                        <CheckCircle2 className=”text-[#EF7622] mb-3”/> 
+                        <h4 className=”font-bold mb-1”>Crece a tu Ritmo</h4> 
+                        <p className=”text-xs text-slate-300”>Módulos estandarizados. Compra 
+hoy un estante, conviértelo en alacena mañana.</p> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+ 
+        {/* Catálogo de Gamas */} 
+        <div className=”py-20 bg-white”> 
+            <div className=”max-w-5xl mx-auto px-4”> 
+                <div className=”text-center mb-12”> 
+                    <h3 className=”text-3xl font-black text-slate-900”>Nuestras Gamas de 
+Manufactura</h3> 
+                    <p className=”text-slate-500 mt-2”>Ingeniería para todos los 
+presupuestos.</p> 
+                </div> 
+ 
+                <div className=”grid md:grid-cols-2 gap-8”> 
+                    {/* Gama Lite */} 
+                    <div className=”border border-slate-200 rounded-3xl p-8 hover:shadow-xl 
+transition flex flex-col”> 
+                        <div className=”inline-block bg-slate-100 text-slate-600 text-[10px] font
+black uppercase px-3 py-1 rounded-full w-fit mb-4”>Gama de Entrada</div> 
+                        <h4 className=”text-2xl font-black text-slate-800 mb-2”>LITE</h4> 
+                        <p className=”text-sm text-slate-600 mb-6”>Funcionalidad pura. 
+Módulos de diseño abierto ideales para exhibición, estantería rápida o espacios 
+minimalistas.</p> 
+                        <ul className=”space-y-2 text-sm text-slate-600 mb-8 font-medium”> 
+                            <li>• Melamina de alta densidad 15mm.</li> 
+                            <li>• Ensambles ocultos (Cero tornillos a la vista).</li> 
+                            <li>• Diseños versátiles piso/pared.</li> 
+                        </ul> 
+                        <div className=”mt-auto”> 
+                            <p className=”text-xs text-slate-400 uppercase font-bold tracking
+widest mb-1”>Módulos desde</p> 
+                            <p className=”text-3xl font-black text-slate-900”>$590 <span 
+className=”text-sm font-normal text-slate-500”>MXN</span></p> 
+                        </div> 
+                    </div> 
+ 
+                    {/* Gama Essential */} 
+                    <div className=”border-2 border-slate-900 rounded-3xl p-8 shadow-lg 
+relative flex flex-col”> 
+                        <div className=”absolute top-0 right-8 bg-slate-900 text-white text
+[10px] font-black uppercase px-4 py-2 rounded-b-xl”>Más Popular</div> 
+                        <div className=”inline-block bg-[#8b5a2b]/10 text-[#8b5a2b] text-[10px] 
+font-black uppercase px-3 py-1 rounded-full w-fit mb-4 border border
+[#8b5a2b]/20”>Gama Intermedia</div> 
+                        <h4 className=”text-2xl font-black text-slate-800 mb
+2”>ESSENTIAL</h4> 
+                        <p className=”text-sm text-slate-600 mb-6”>Privacidad y elegancia. 
+Módulos con puertas, ideales para cocinas, clósets cerrados y oficinas.</p> 
+                        <ul className=”space-y-2 text-sm text-slate-600 mb-8 font-medium”> 
+                            <li>• Puertas con sistema Push-to-Open.</li> 
+                            <li>• Sin jaladeras para un diseño ultra limpio.</li> 
+                            <li>• Preparados para apilar o colgar.</li> 
+                        </ul> 
+                        <div className=”mt-auto flex items-end justify-between”> 
+                            <div> 
+                                <p className=”text-xs text-slate-400 uppercase font-bold tracking
+widest mb-1”>Módulos desde</p> 
+                                <p className=”text-3xl font-black text-slate-900”>$750 <span 
+className=”text-sm font-normal text-slate-500”>MXN</span></p> 
+                            </div> 
+                            <button className=”bg-slate-900 text-white px-6 py-3 rounded-xl font
+bold hover:bg-slate-800 transition shadow-md”> 
+                                Pedir Catálogo 
+                            </button> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+      </div> 
+    ); 
+  } 
+} 
+ 
+ 
+Import React, { useState, useEffect } from ‘react’; 
+Import {  
+  ShieldCheck, Droplets, Cuboid, ChevronRight,  
+  MapPin, Phone, Mail, ArrowLeft, Wrench, CheckCircle2, 
+  ExternalLink, Download, MessageSquare 
+} from ‘lucide-react’; 
+ 
+// --- PALETA DE COLORES OFICIAL --- 
+Const COLORS = { 
+  Navy: ‘#1B2A41’, 
+  Cyan: ‘#00AEEF’, 
+  Orange: ‘#EF7622’, 
+  Teal: ‘#18989E’, 
+  Gray: ‘#5ª6978’, 
+  nexvelGold: ‘#8b5a2b’ 
+}; 
+ 
+// --- COMPONENTE: LOGO PSINGI VECTORIAL --- 
+Const PsingiLogo = ({ className = “w-24 h-24” }) => ( 
+<svg viewBox=”0 0 120 120” className={className}> 
+<path d=”M20 60 L60 85 L100 60 L100 80 L60 105 L20 80 Z” fill={COLORS.gray}/> 
+<path d=”M45 75 L60 100 L75 75 Z” fill=”#4ª5763”/> 
+<path d=”M20 40 L60 15 L100 40 L100 60 L85 60 L85 45 L60 30 L35 45 L35 60 L20 60 
+Z” fill={COLORS.navy}/> 
+<circle cx=”60” cy=”40” r=”6” fill={COLORS.orange}/> 
+<path d=”M60 40 L60 80” stroke={COLORS.orange} strokeWidth=”6” 
+strokeLinecap=”round”/> 
+<path d=”M57 80 L63 80 L60 85 Z” fill={COLORS.orange}/> 
+<circle cx=”30” cy=”45” r=”5” fill={COLORS.teal} stroke=”white” strokeWidth=”2”/> 
+<path d=”M30 45 L50 60 L50 70” fill=”none” stroke={COLORS.teal} strokeWidth=”4” 
+strokeLinejoin=”round”/> 
+<circle cx=”90” cy=”45” r=”5” fill={COLORS.cyan} stroke=”white” strokeWidth=”2”/> 
+<path d=”M90 45 L70 60 L70 70” fill=”none” stroke={COLORS.cyan} 
+strokeWidth=”4” strokeLinejoin=”round”/> 
+</svg> 
+); 
+// --- COMPONENTE: LOGO NEXVEL --- 
+Const NexvelLogo = () => ( 
+<div className=”flex flex-col items-start”> 
+<div className=”flex items-baseline leading-none”> 
+<span className=”text-3xl font-black tracking-tighter text-slate-900 font
+sans”>NEX</span> 
+<span className=”text-3xl font-black tracking-tighter text-[#8b5a2b] font
+sans”>X</span> 
+            <span className=”text-3xl font-black tracking-tighter text-slate-900 font
+sans”>VEL</span> 
+        </div> 
+        <span className=”text-xl italic text-slate-800 -mt-1 ml-12” style={{ fontFamily: 
+‘serif’ }}>Studio</span> 
+    </div> 
+); 
+ 
+// --- APP PRINCIPAL (ENRUTADOR VIRTUAL) --- 
+Export default function MultiPageApp() { 
+  Const [currentPage, setCurrentPage] = useState(‘home’); // ‘home’, ‘dryhouse’, 
+‘nexvel’ 
+ 
+  // Función para simular cambio de página con scroll hacia arriba 
+  Const navigateTo = (page) => { 
+    setCurrentPage(page); 
+    window.scrollTo({ top: 0, behavior: ‘smooth’ }); 
+  }; 
+ 
+  // 1. PÁGINA: INDEX CORPORATIVO (PSINGI) 
+  If (currentPage === ‘home’) { 
+    Return ( 
+      <div className=”min-h-screen bg-slate-50 font-sans selection:bg-[#EF7622] 
+selection:text-white”> 
+         
+        {/* Navbar Matriz */} 
+        <nav className=”bg-white border-b border-slate-200 sticky top-0 z-50 shadow
+sm”> 
+          <div className=”max-w-7xl mx-auto px-4 sm:px-6 lg:px-8”> 
+            <div className=”flex justify-between h-20 items-center”> 
+              <div className=”flex items-center gap-3 cursor-pointer” onClick={() => 
+navigateTo(‘home’)}> 
+                <PsingiLogo className=”w-12 h-12” /> 
+                <div> 
+                  <h1 className=”font-black text-xl tracking-tight text-[#1B2A41] leading
+none uppercase”>PSINGI</h1> 
+                  <span className=”text-[9px] font-bold text-slate-400 tracking-[0.2em] 
+uppercase”>Grupo Empresarial</span> 
+                </div> 
+              </div> 
+              <div className=”hidden md:flex items-center gap-6”> 
+                <a href=”#filiales” className=”text-sm font-bold text-slate-600 hover:text
+[#EF7622] transition”>Filiales Operativas</a> 
+                <a href=”#contacto” className=”text-sm font-bold text-slate-600 hover:text
+[#EF7622] transition”>Contacto</a> 
+                <button className=”flex items-center gap-2 bg-[#1B2A41] text-white px-5 py
+2.5 rounded-full text-sm font-bold hover:bg-opacity-90 transition”> 
+                  <ShieldCheck size={16} /> Portal Técnico 
+                </button> 
+              </div> 
+            </div> 
+          </div> 
+        </nav> 
+ 
+        {/* Hero Section */} 
+        <div className=”relative bg-[#1B2A41] text-white overflow-hidden py-24 lg:py
+32”> 
+          <div className=”absolute inset-0 opacity-10” style={{ backgroundImage: ‘radial
+gradient(#ffffff 1px, transparent 1px)’, backgroundSize: ‘30px 30px’ }}></div> 
+          <div className=”max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid 
+md:grid-cols-2 gap-12 items-center”> 
+            <div className=”space-y-6”> 
+              <div className=”inline-block px-4 py-1.5 rounded-full bg-white/10 border 
+border-white/20 text-xs font-bold text-[#EF7622] tracking-widest uppercase”> 
+                Productos y Servicios Integrales de Nueva Generación 
+              </div> 
+              <h2 className=”text-4xl md:text-5xl lg:text-6xl font-black leading-tight”> 
+                Ingeniería que <br/>Construye el Futuro. 
+              </h2> 
+              <p className=”text-slate-400 text-lg max-w-lg leading-relaxed”> 
+                Centralizamos la calidad. Somos un conglomerado yucateco especializado 
+en manufactura química, mobiliario inteligente y ejecución técnica certificada. 
+              </p> 
+              <div className=”pt-4”> 
+                <a href=”#filiales” className=”bg-[#EF7622] text-white px-8 py-4 rounded-xl 
+font-bold hover:bg-opacity-90 transition inline-flex items-center gap-2 shadow-lg 
+shadow-orange-900/50”> 
+                  Conocer Nuestras Marcas <ChevronRight size={18} /> 
+                </a> 
+              </div> 
+            </div> 
+            <div className=”hidden md:flex justify-center”> 
+              <PsingiLogo className=”w-96 h-96 drop-shadow-2xl opacity-90” /> 
+            </div> 
+          </div> 
+        </div> 
+ 
+        {/* Sección de Filiales (Los Portales) */} 
+        <div id=”filiales” className=”py-24 bg-white”> 
+          <div className=”max-w-7xl mx-auto px-4 sm:px-6 lg:px-8”> 
+            <div className=”text-center max-w-2xl mx-auto mb-16 space-y-4”> 
+              <h3 className=”text-[#EF7622] font-bold tracking-widest uppercase text
+sm”>El Ecosistema Corporativo</h3> 
+              <h2 className=”text-3xl md:text-4xl font-black text-slate-900”>Nuestras 
+Divisiones Especializadas</h2> 
+              <p className=”text-slate-500”>Seleccione una filial para acceder a su 
+catálogo y servicios exclusivos.</p> 
+            </div> 
+ 
+            <div className=”grid md:grid-cols-2 gap-8 max-w-5xl mx-auto”> 
+               
+              {/* Tarjeta Dry House */} 
+              <div  
+                onClick={() => navigateTo(‘dryhouse’)} 
+                className=”bg-slate-50 rounded-3xl p-8 border-2 border-slate-100 
+hover:border-[#00AEEF] cursor-pointer transition-all duration-300 group 
+hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden” 
+              > 
+                <div className=”absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 
+transition duration-500”> 
+                    <Droplets size={200} className=”text-[#00AEEF]” /> 
+                </div> 
+                <div className=”w-16 h-16 bg-[#00AEEF] text-white rounded-2xl flex items
+center justify-center text-3xl mb-6 shadow-lg shadow-cyan-200”> 
+                  <Droplets /> 
+                </div> 
+                <h4 className=”text-2xl font-black text-slate-900 mb-2”>Dry House 
+México®</h4> 
+                <p className=”text-slate-600 text-sm leading-relaxed mb-8”>Especialidades 
+químicas, selladores hidrófugos y sistemas de impermeabilización diseñados para el 
+clima extremo del sureste.</p> 
+                <div className=”flex items-center justify-between mt-auto”> 
+                    <span className=”bg-cyan-100 text-[#00AEEF] text-xs font-bold px-3 py-1 
+rounded-full uppercase tracking-wider”>+8,000 Ventas Nacionales</span> 
+                    <span className=”text-[#00AEEF] font-bold text-sm flex items-center gap
+1 group-hover:gap-2 transition-all”>Entrar a la marca <ChevronRight 
+size={16}/></span> 
+                </div> 
+              </div> 
+ 
+              {/* Tarjeta Nexvel */} 
+              <div  
+                onClick={() => navigateTo(‘nexvel’)} 
+                className=”bg-slate-50 rounded-3xl p-8 border-2 border-slate-100 
+hover:border-[#1B2A41] cursor-pointer transition-all duration-300 group 
+hover:shadow-2xl hover:-translate-y-2 relative overflow-hidden” 
+              > 
+                 <div className=”absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 
+transition duration-500”> 
+                    <Cuboid size={200} className=”text-[#1B2A41]” /> 
+                </div> 
+                <div className=”w-16 h-16 bg-[#1B2A41] text-white rounded-2xl flex items
+center justify-center text-3xl mb-6 shadow-lg shadow-slate-300”> 
+                  <Cuboid /> 
+                </div> 
+                <h4 className=”text-2xl font-black text-slate-900 mb-2”>Nexvel Studio</h4> 
+                <p className=”text-slate-600 text-sm leading-relaxed mb-8”>Mobiliario 
+modular de alta ingeniería. Cocinas y clósets que crecen a tu ritmo con herrajes 
+premium y diseños estandarizados.</p> 
+                <div className=”flex items-center justify-between mt-auto”> 
+                    <span className=”bg-slate-200 text-[#1B2A41] text-xs font-bold px-3 py-1 
+rounded-full uppercase tracking-wider”>Nueva División</span> 
+                    <span className=”text-[#1B2A41] font-bold text-sm flex items-center gap
+1 group-hover:gap-2 transition-all”>Explorar módulos <ChevronRight 
+size={16}/></span> 
+                </div> 
+              </div> 
+ 
+            </div> 
+          </div> 
+        </div> 
+ 
+        {/* Sección de Contacto Corporativo */} 
+        <div id=”contacto” className=”bg-slate-900 text-white py-20 border-t border
+slate-800”> 
+            <div className=”max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 
+gap-12 items-center”> 
+                <div> 
+                    <h3 className=”text-3xl font-black mb-4”>Contacto Corporativo</h3> 
+                    <p className=”text-slate-400 mb-8”>Para asuntos administrativos, 
+relaciones comerciales, licitaciones o contacto general con Grupo PSINGI.</p> 
+                    <div className=”space-y-4”> 
+                        <div className=”flex items-center gap-4 text-slate-300”> 
+                            <div className=”w-12 h-12 bg-white/10 rounded-full flex items-center 
+justify-center text-[#EF7622]”><Mail size={20}/></div> 
+                            <div><p className=”text-xs font-bold text-slate-500 
+uppercase”>Correo Electrónico</p><p className=”font
+mono”>contacto@psingi.com</p></div> 
+                        </div> 
+                        <div className=”flex items-center gap-4 text-slate-300”> 
+                            <div className=”w-12 h-12 bg-white/10 rounded-full flex items-center 
+justify-center text-[#EF7622]”><Phone size={20}/></div> 
+                            <div><p className=”text-xs font-bold text-slate-500 uppercase”>Línea 
+Directa / WhatsApp</p><p className=”font-mono”>999 456 8083</p></div> 
+                        </div> 
+                        <div className=”flex items-center gap-4 text-slate-300”> 
+                            <div className=”w-12 h-12 bg-white/10 rounded-full flex items-center 
+justify-center text-[#EF7622]”><MapPin size={20}/></div> 
+                            <div><p className=”text-xs font-bold text-slate-500 uppercase”>Sede 
+de Operaciones</p><p>Mérida, Yucatán, México.</p></div> 
+                        </div> 
+                    </div> 
+                </div> 
+                <div className=”bg-white/5 p-8 rounded-3xl border border-white/10”> 
+                    <h4 className=”text-xl font-bold mb-4”>La División de Ingeniería</h4> 
+                    <p className=”text-sm text-slate-400 mb-6”>Todos los productos 
+fabricados por nuestras filiales son instalados exclusivamente por la División Técnica 
+Especializada de Grupo PSINGI, garantizando la máxima calidad sin depender de 
+terceros.</p> 
+                    <div className=”flex items-center gap-2 text-green-400 text-sm font
+bold”> 
+                        <CheckCircle2 size={18}/> Instalación Garantizada 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+      </div> 
+    ); 
+  } 
+ 
+  // 2. SUB-PÁGINA: DRY HOUSE MÉXICO 
+  If (currentPage === ‘dryhouse’) { 
+    Return ( 
+      <div className=”min-h-screen bg-slate-50”> 
+        {/* Navbar Submarca */} 
+        <nav className=”bg-[#00AEEF] text-white sticky top-0 z-50 shadow-md”> 
+            <div className=”max-w-7xl mx-auto px-4 h-16 flex justify-between items
+center”> 
+                <button onClick={() => navigateTo(‘home’)} className=”flex items-center 
+gap-2 text-white/80 hover:text-white font-bold text-sm transition”> 
+                    <ArrowLeft size={16}/> Volver al Grupo 
+                </button> 
+                <div className=”flex items-center gap-2”> 
+                    <Droplets size={24}/> 
+                    <h1 className=”font-black text-xl tracking-tighter”>DRY HOUSE</h1> 
+                </div> 
+            </div> 
+        </nav> 
+ 
+        {/* Cabecera Dry House */} 
+        <div className=”bg-white py-16 border-b border-slate-200”> 
+            <div className=”max-w-4xl mx-auto px-4 text-center”> 
+                <h2 className=”text-4xl font-black text-slate-900 mb-4”>Protección 
+Estructural Avanzada</h2> 
+                <p className=”text-lg text-slate-600 mb-8”>Soluciones químicas hidrófugas 
+para el clima extremo. Más de 8,000 unidades vendidas respaldan nuestra calidad en 
+México.</p> 
+                 
+                {/* Producto Estrella */} 
+                <div className=”bg-slate-50 rounded-3xl p-8 border border-slate-200 flex 
+flex-col md:flex-row items-center gap-8 text-left shadow-sm”> 
+                    <div className=”w-32 h-32 bg-[#00AEEF]/10 rounded-2xl flex items-center 
+justify-center text-[#00AEEF] flex-shrink-0”> 
+                        <Droplets size={64}/> 
+                    </div> 
+                    <div> 
+                        <div className=”inline-block bg-yellow-100 text-yellow-800 text-[10px] 
+font-black px-2 py-1 rounded uppercase tracking-widest mb-2 border border-yellow
+200”>Producto Más Vendido</div> 
+                        <h3 className=”text-2xl font-black text-slate-800 mb-2”>Sellador / 
+Resanador Acrílico Transparente</h3> 
+                        <p className=”text-sm text-slate-600 mb-4”>Fórmula hidrófuga de alta 
+penetración. Sella poros en techos, madera y concreto haciéndolos repelentes al 
+agua sin cambiar su apariencia.</p> 
+                        <div className=”flex gap-4”> 
+                            <button className=”bg-[#00AEEF] text-white px-5 py-2.5 rounded-lg 
+font-bold text-sm hover:bg-cyan-600 transition shadow-lg shadow-cyan-200 flex 
+items-center gap-2”> 
+                                <MessageSquare size={16}/> Cotizar por WhatsApp 
+                            </button> 
+                            <button className=”border-2 border-slate-200 text-slate-600 px-5 py
+2.5 rounded-lg font-bold text-sm hover:border-[#00AEEF] hover:text-[#00AEEF] 
+transition flex items-center gap-2”> 
+                                <Download size={16}/> Manual de Uso (PDF) 
+                            </button> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+ 
+        {/* Tienda Oficial */} 
+        <div className=”max-w-4xl mx-auto px-4 py-16 text-center”> 
+            <h3 className=”text-xl font-bold text-slate-800 mb-6”>Envíos a todo el país a 
+través de Mercado Libre</h3> 
+            <a href=”#” className=”inline-flex items-center gap-3 bg-[#FFE600] text
+[#2D3277] px-8 py-4 rounded-xl font-black hover:scale-105 transition shadow-lg”> 
+                <ExternalLink size={20}/> Visitar Tienda Oficial en Mercado Libre 
+            </a> 
+            <p className=”text-xs text-slate-400 mt-4 uppercase tracking-widest font
+bold”>Distribuidora Peninsula – MercadoLíder</p> 
+        </div> 
+      </div> 
+    ); 
+  } 
+ 
+  // 3. SUB-PÁGINA: NEXVEL STUDIO 
+  If (currentPage === ‘nexvel’) { 
+    Return ( 
+      <div className=”min-h-screen bg-slate-50”> 
+        {/* Navbar Submarca */} 
+        <nav className=”bg-white text-slate-900 sticky top-0 z-50 shadow-sm border-b
+2 border-slate-900”> 
+            <div className=”max-w-7xl mx-auto px-4 h-20 flex justify-between items
+center”> 
+                <button onClick={() => navigateTo(‘home’)} className=”flex items-center 
+gap-2 text-slate-500 hover:text-slate-900 font-bold text-sm transition”> 
+                    <ArrowLeft size={16}/> Grupo PSINGI 
+                </button> 
+                <NexvelLogo /> 
+            </div> 
+        </nav> 
+ 
+        {/* Cabecera Nexvel */} 
+        <div className=”bg-slate-900 text-white py-20 relative overflow-hidden”> 
+            <div className=”absolute -right-20 top-0 opacity-10”><Cuboid 
+size={400}/></div> 
+            <div className=”max-w-5xl mx-auto px-4 relative z-10 text-center”> 
+                <h2 className=”text-4xl md:text-5xl font-black mb-6”>Mobiliario Modular de 
+Alta Ingeniería</h2> 
+                <p className=”text-lg text-slate-400 max-w-2xl mx-auto mb-10”>No 
+cambies de casa, cambia cómo la equipas. Empieza con un buró, termina con la 
+cocina de tus sueños gracias a nuestro sistema de módulos estandarizados.</p> 
+                 
+                <div className=”grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto”> 
+                    <div className=”bg-white/10 p-6 rounded-2xl border border-white/20 
+backdrop-blur-sm text-left”> 
+                        <CheckCircle2 className=”text-[#EF7622] mb-3”/> 
+                        <h4 className=”font-bold mb-1”>Cero Triplay Delgado</h4> 
+                        <p className=”text-xs text-slate-300”>Fondos completos del mismo 
+grosor para máxima rigidez estructural.</p> 
+                    </div> 
+                    <div className=”bg-white/10 p-6 rounded-2xl border border-white/20 
+backdrop-blur-sm text-left”> 
+                        <CheckCircle2 className=”text-[#EF7622] mb-3”/> 
+                        <h4 className=”font-bold mb-1”>Herrajes Premium</h4> 
+                        <p className=”text-xs text-slate-300”>Sistema “Push to Open” o cierre 
+suave en nuestras gamas superiores.</p> 
+                    </div> 
+                    <div className=”bg-white/10 p-6 rounded-2xl border border-white/20 
+backdrop-blur-sm text-left”> 
+                        <CheckCircle2 className=”text-[#EF7622] mb-3”/> 
+                        <h4 className=”font-bold mb-1”>Crece a tu Ritmo</h4> 
+                        <p className=”text-xs text-slate-300”>Módulos estandarizados. Compra 
+hoy un estante, conviértelo en alacena mañana.</p> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+ 
+        {/* Catálogo de Gamas */} 
+        <div className=”py-20 bg-white”> 
+            <div className=”max-w-5xl mx-auto px-4”> 
+                <div className=”text-center mb-12”> 
+                    <h3 className=”text-3xl font-black text-slate-900”>Nuestras Gamas de 
+Manufactura</h3> 
+                    <p className=”text-slate-500 mt-2”>Ingeniería para todos los 
+presupuestos.</p> 
+                </div> 
+ 
+                <div className=”grid md:grid-cols-2 gap-8”> 
+                    {/* Gama Lite */} 
+                    <div className=”border border-slate-200 rounded-3xl p-8 hover:shadow-xl 
+transition flex flex-col”> 
+                        <div className=”inline-block bg-slate-100 text-slate-600 text-[10px] font
+black uppercase px-3 py-1 rounded-full w-fit mb-4”>Gama de Entrada</div> 
+                        <h4 className=”text-2xl font-black text-slate-800 mb-2”>LITE</h4> 
+                        <p className=”text-sm text-slate-600 mb-6”>Funcionalidad pura. 
+Módulos de diseño abierto ideales para exhibición, estantería rápida o espacios 
+minimalistas.</p> 
+                        <ul className=”space-y-2 text-sm text-slate-600 mb-8 font-medium”> 
+                            <li>• Melamina de alta densidad 15mm.</li> 
+                            <li>• Ensambles ocultos (Cero tornillos a la vista).</li> 
+                            <li>• Diseños versátiles piso/pared.</li> 
+                        </ul> 
+                        <div className=”mt-auto”> 
+                            <p className=”text-xs text-slate-400 uppercase font-bold tracking
+widest mb-1”>Módulos desde</p> 
+                            <p className=”text-3xl font-black text-slate-900”>$590 <span 
+className=”text-sm font-normal text-slate-500”>MXN</span></p> 
+                        </div> 
+                    </div> 
+ 
+                    {/* Gama Essential */} 
+                    <div className=”border-2 border-slate-900 rounded-3xl p-8 shadow-lg 
+relative flex flex-col”> 
+                        <div className=”absolute top-0 right-8 bg-slate-900 text-white text
+[10px] font-black uppercase px-4 py-2 rounded-b-xl”>Más Popular</div> 
+                        <div className=”inline-block bg-[#8b5a2b]/10 text-[#8b5a2b] text-[10px] 
+font-black uppercase px-3 py-1 rounded-full w-fit mb-4 border border
+[#8b5a2b]/20”>Gama Intermedia</div> 
+                        <h4 className=”text-2xl font-black text-slate-800 mb
+2”>ESSENTIAL</h4> 
+                        <p className=”text-sm text-slate-600 mb-6”>Privacidad y elegancia. 
+Módulos con puertas, ideales para cocinas, clósets cerrados y oficinas.</p> 
+                        <ul className=”space-y-2 text-sm text-slate-600 mb-8 font-medium”> 
+                            <li>• Puertas con sistema Push-to-Open.</li> 
+                            <li>• Sin jaladeras para un diseño ultra limpio.</li> 
+                            <li>• Preparados para apilar o colgar.</li> 
+                        </ul> 
+                        <div className=”mt-auto flex items-end justify-between”> 
+                            <div> 
+                                <p className=”text-xs text-slate-400 uppercase font-bold tracking
+widest mb-1”>Módulos desde</p> 
+                                <p className=”text-3xl font-black text-slate-900”>$750 <span 
+className=”text-sm font-normal text-slate-500”>MXN</span></p> 
+                            </div> 
+                            <button className=”bg-slate-900 text-white px-6 py-3 rounded-xl font
+bold hover:bg-slate-800 transition shadow-md”> 
+                                Pedir Catálogo 
+                            </button> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+      </div> 
+    ); 
+  } 
+} 
+ 
+ 
+ 
