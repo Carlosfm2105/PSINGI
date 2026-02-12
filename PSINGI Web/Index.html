@@ -7,7 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Montserrat:wght@800&display=swap" rel="stylesheet">
-    
+
+
     <style>
         body { font-family: 'Inter', sans-serif; }
         .font-montserrat { font-family: 'Montserrat', sans-serif; }
@@ -22,17 +23,17 @@
     <div id="view-home" class="view-section active-view">
         <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-20 items-center">
+                <div class="flex justify-between h-30 items-center">
                     <div class="flex items-center gap-3 cursor-pointer" onclick="navigate('home')">
-                        <div class="w-10 h-10 bg-[#1B2A41] rounded flex items-center justify-center text-white font-black text-xs">P</div>
+                        <img src="Grupo-PSINGI-PNG.png" class="w-24 h-auto">
                         <div>
-                            <h1 class="font-black text-xl tracking-tight text-[#1B2A41] leading-none">PSINGI</h1>
-                            <span class="text-[9px] font-bold text-slate-400 tracking-[0.2em] uppercase">Grupo Empresarial</span>
+                            <h1 class="font-black text-xl tracking-tight text-[#1B2A41] leading-none">Grupo PSINGI</h1>
+                            <span class="text-[9px] font-bold text-slate-400 tracking-[0.2em] uppercase">Soluciones de innovación</span>
                         </div>
                     </div>
                     <div class="hidden md:flex items-center gap-6">
                         <button onclick="navigate('tech-login')" class="flex items-center gap-2 bg-[#1B2A41] text-white px-5 py-2.5 rounded-full text-xs font-bold hover:bg-slate-800 transition">
-                            <i class="fa-solid fa-shield-halved"></i> Portal Técnico
+                            <i class="fa-solid fa-tools"></i> División de Ingeniería Técnica Especializada
                         </button>
                     </div>
                 </div>
@@ -47,10 +48,10 @@
                 </span>
                 <h2 className="text-4xl md:text-6xl font-black mb-6">Grupo PSINGI</h2>
                 <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
-                    Centralizamos la calidad. Somos un conglomerado yucateco especializado en manufactura química (Dry House), mobiliario inteligente (Nexvel) y ejecución técnica certificada.
+                    Priorizamos la calidad centralizamos la ejecución. Somos un grupo nacido en Mérida, Yucatán, especializado en producto de impermeabilización (Dry House México), mobiliario de innovación (Nexvel Studio) y ejecución técnica en campo gracias a nuestra "División de Ingeniería Técnica Especializada".
                 </p>
                 <button onclick="document.getElementById('filiales').scrollIntoView({behavior: 'smooth'})" class="bg-[#EF7622] text-white px-8 py-4 rounded-xl font-bold hover:bg-opacity-90 transition shadow-lg">
-                    Explorar Divisiones <i class="fa-solid fa-arrow-down ml-2"></i>
+                    Explorar Filiales <i class="fa-solid fa-arrow-down ml-2"></i>
                 </button>
             </div>
         </div>
@@ -60,18 +61,18 @@
                 
                 <div onclick="navigate('dryhouse')" class="group cursor-pointer border border-slate-200 rounded-3xl p-8 hover:border-[#00AEEF] hover:shadow-xl transition relative overflow-hidden bg-slate-50">
                     <div class="w-16 h-16 bg-[#00AEEF] text-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg">
-                        <i class="fa-solid fa-droplet"></i>
+                        <img src="LOGO-DRYPNG.png">
                     </div>
                     <h3 class="text-2xl font-black text-slate-800 mb-2">Dry House México</h3>
-                    <p class="text-sm text-slate-500 mb-6">Especialidades químicas e impermeabilizantes. Protección estructural para el clima extremo.</p>
+                    <p class="text-sm text-slate-500 mb-6">Productos hidrofugos e impermeabilizantes. Protección contra humeda para clima extremo.</p>
                     <span class="text-[#00AEEF] font-bold text-sm flex items-center gap-2 group-hover:gap-4 transition-all">
-                        Ver Catálogo <i class="fa-solid fa-arrow-right"></i>
+                        Ver Tienda <i class="fa-solid fa-arrow-right"></i>
                     </span>
                 </div>
 
                 <div onclick="navigate('nexvel')" class="group cursor-pointer border border-slate-200 rounded-3xl p-8 hover:border-[#1B2A41] hover:shadow-xl transition relative overflow-hidden bg-slate-50">
                     <div class="w-16 h-16 bg-[#1B2A41] text-white rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg">
-                        <i class="fa-solid fa-cube"></i>
+                        <img src="NEXVEL-Studio-logo.jpeg">
                     </div>
                     <h3 class="text-2xl font-black text-slate-800 mb-2">Nexvel Studio</h3>
                     <p class="text-sm text-slate-500 mb-6">Mobiliario modular de alta ingeniería. Cocinas y clósets inteligentes que crecen contigo.</p>
@@ -82,23 +83,26 @@
             </div>
         </div>
         
-        <footer class="bg-slate-900 text-slate-500 py-12 text-center text-sm">
-            <p>Grupo PSINGI © 2026. Todos los derechos reservados.</p>
+        <footer class="bg-slate-900 text-slate-500 py-10 text-center text-sm">
+            <p>Grupo PSINGI. Todos los derechos reservados.</p>
             <p class="mt-2 text-xs">Mérida, Yucatán, México.</p>
+            <p class="mt-2 text-xs">contacto@psingi.com</p>
         </footer>
     </div>
 
     <div id="view-dryhouse" class="view-section">
         <nav class="bg-[#00AEEF] text-white p-4 sticky top-0 z-50 shadow-md flex justify-between items-center">
             <button onclick="navigate('home')" class="font-bold text-sm flex items-center gap-2 hover:opacity-80"><i class="fa-solid fa-arrow-left"></i> Volver al Grupo</button>
-            <h1 class="font-black text-xl tracking-tighter">DRY HOUSE</h1>
+            <h1 class="font-black text-xl tracking-tighter">Dry House México</h1>
         </nav>
         <div class="max-w-4xl mx-auto px-4 py-16 text-center">
             <i class="fa-solid fa-droplet text-6xl text-[#00AEEF] mb-6"></i>
             <h2 class="text-4xl font-black text-slate-900 mb-4">Líderes en Mercado Libre</h2>
             <p class="text-lg text-slate-600 mb-8">Más de 8,000 unidades vendidas avalan nuestra calidad.</p>
-            <a href="https://listado.mercadolibre.com.mx/_CustId_XXXXX" target="_blank" class="bg-yellow-400 text-blue-900 px-8 py-4 rounded-xl font-black hover:scale-105 transition shadow-lg inline-flex items-center gap-2">
+            <a href="https://articulo.mercadolibre.com.mx/MLM-1593154164" target="_blank" class="bg-yellow-400 text-blue-900 px-8 py-4 rounded-xl font-black hover:scale-105 transition shadow-lg inline-flex items-center gap-2">
                 <i class="fa-solid fa-shop"></i> Ir a Tienda Oficial
+            <a href="Instrucciones-Sellador-Hidrofugo.html" target="_blank" class="bg-yellow-400 text-blue-900 px-8 py-4 rounded-xl font-black hover:scale-105 transition shadow-lg inline-flex items-center gap-2">
+                <i class="fa-solid fa-book"></i> Instrucciones de uso Sellador Hidrofugo
             </a>
         </div>
     </div>
@@ -106,7 +110,7 @@
     <div id="view-nexvel" class="view-section">
         <nav class="bg-white text-slate-900 border-b border-slate-200 p-4 sticky top-0 z-50 shadow-sm flex justify-between items-center">
             <button onclick="navigate('home')" class="font-bold text-sm flex items-center gap-2 text-slate-500 hover:text-slate-900"><i class="fa-solid fa-arrow-left"></i> Grupo PSINGI</button>
-            <h1 class="font-black text-xl tracking-tighter">NEXVEL</h1>
+            <h1 class="font-black text-xl tracking-tighter">NEXVEL Studio</h1>
         </nav>
         <div class="bg-slate-900 text-white py-20 text-center px-4">
             <i class="fa-solid fa-cube text-6xl text-[#EF7622] mb-6"></i>
